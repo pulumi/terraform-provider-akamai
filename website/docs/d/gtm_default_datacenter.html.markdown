@@ -12,7 +12,7 @@ Use `akamai_gtm_default_datacenter` data source to retrieve default datacenter i
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_gtm_default_datacenter" "example_ddc" {
@@ -34,7 +34,7 @@ resource "akamai_gtm_cidrmap" "example_cidrmap" {
 The following arguments are supported:
 
 * `domain` — (Required)
-* `domain` — (Optional. Default 5400)
+* `datacenter` — (Optional. Default 5400)
 * `datacenter_id` — (Computed - do not configure) default datacenter Id
 * `nickname` — (Computed - do not configure) default datacenter nickname
 

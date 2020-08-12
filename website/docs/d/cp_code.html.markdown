@@ -12,13 +12,13 @@ Use `akamai_cp_code` data source to retrieve a group id.
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_cp_code" "example" {
      name = "cpcode name"
-     group = "grp_#####"
-     contract = "ctr_#####"
+     group = "grp_xxxxx"
+     contract = "ctr_xxxxx"
 }
 
 resource "akamai_property" "example" {

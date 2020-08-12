@@ -15,7 +15,7 @@ If the CP Code already exists it will be used instead of creating a new one.
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_cp_code" "cp_code" {

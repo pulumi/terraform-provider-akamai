@@ -13,7 +13,7 @@ Use `akamai_group` data source to retrieve a group id.
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_group" "example" {

@@ -12,7 +12,7 @@ The `akamai_property_rules` data source allows you to configure a nested block o
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_property_rules" "example" {
@@ -67,27 +67,27 @@ The following arguments are supported:
 
 The `rule` block supports:
 
-* `is_secure` — (Optional) Whether the property is a secure (Enhanced TLS) property or not (top-level only).
-* `criteria` — (Optional) One or more criteria to match requests on.
-* `behavior` — (Optional) One or more behaviors to apply to requests that match.
-* `rule` — (Optional) Child rules (may be nested five levels deep).
+* `is_secure` — (Optional) Whether the property is a secure (Enhanced TLS) property or not (top-level only).
+* `criteria` — (Optional) One or more criteria to match requests on.
+* `behavior` — (Optional) One or more behaviors to apply to requests that match.
+* `rule` — (Optional) Child rules (may be nested five levels deep).
 
 The `criteria` block supports:
 
-* `name` — (Required) The name of the criteria.
+* `name` — (Required) The name of the criteria.
 * `option` — (Optional) One or more options for the criteria.
 
 
 The `behavior` block supports:
 
-* `name` — (Required) The name of the behavior.
+* `name` — (Required) The name of the behavior.
 * `option` — (Optional) One or more options for the behavior.
 
 The `option` block supports:
 
 * `key` — (Required) The option name.
-* `value` — (Optional) A single value for the option.
-* `values` — (Optional) An array of values for the option.
+* `value` — (Optional) A single value for the option.
+* `values` — (Optional) An array of values for the option.
 
 One of `value` or `values` is required.
 

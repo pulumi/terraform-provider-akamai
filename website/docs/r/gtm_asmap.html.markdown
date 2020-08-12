@@ -12,7 +12,7 @@ description: |-
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_gtm_asmap" "demo_asmap" {

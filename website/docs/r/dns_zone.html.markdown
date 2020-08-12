@@ -12,7 +12,7 @@ The `akamai_dns_zone` provides the resource for configuring a dns zone to integr
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_dns_zone" "demozone" {

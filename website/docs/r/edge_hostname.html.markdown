@@ -17,7 +17,7 @@ An edge hostname is the CNAME target you use when directing your end user traffi
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_edge_hostname" "terraform-demo" {

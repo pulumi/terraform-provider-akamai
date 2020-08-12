@@ -13,7 +13,7 @@ update, and activate properties on the Akamai platform.
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_property" "example" {
@@ -49,8 +49,8 @@ The following arguments are supported:
 * `product` — (Optional) The product ID. (Default: `prd_SPM` for Ion)
 * `name` — (Required) The property name.
 * `contact` — (Required) One or more email addresses to inform about activation changes.
-* `hostnames` — (Required) A map of public hostnames to edge hostnames (e.g. `{"example.org" = "example.org.edgesuite.net"}`)
-* `is_secure` — (Optional) Whether the property is a secure (Enhanced TLS) property or not.
+* `hostnames` — (Required) A map of public hostnames to edge hostnames (e.g. `{"example.org" = "example.org.edgesuite.net"}`)
+* `is_secure` — (Optional) Whether the property is a secure (Enhanced TLS) property or not.
 
 ### Property Rules
 
@@ -70,14 +70,14 @@ In addition the specifying the rule tree in it's entirety, you can also set the 
 
 You can also define property manager variables. *This will override your JSON configuration*.
 
-* `variables` — (Optional) A JSON encoded string of property manager variable definitions (see: [`akamai_property_variables`](/docs/providers/akamai/r/property_variables.html))
+* `variables` — (Optional) A JSON encoded string of property manager variable definitions (see: [`akamai_property_variables`](/docs/providers/akamai/r/property_variables.html))
 
 ### Attribute Reference
 
 The following attributes are returned:
 
-* `account` — the Account ID under which the property is created.
+* `account` — the Account ID under which the property is created.
 * `version` — the current version of the property config.
 * `production_version` — the current version of the property active on the production network.
-* `staging_version` — the current version of the property active on the staging network.
+* `staging_version` — the current version of the property active on the staging network.
 * `edge_hostnames` — the final public hostname to edge hostname map

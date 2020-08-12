@@ -12,11 +12,11 @@ Use `akamai_authorities_set` datasource to retrieve a contracts authorities set 
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_authorities_set" "example" {
-     contract = "ctr_#####"
+     contract = "ctr_xxxxx"
 }
 ```
 

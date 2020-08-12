@@ -12,7 +12,7 @@ Use `akamai_contract` data source to retrieve a group id.
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 data "akamai_contract" "example" {

@@ -21,7 +21,7 @@ Typical uses for variables include:
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
 resource "akamai_property_variables" "origin" {
@@ -43,8 +43,8 @@ The following arguments are supported:
 
 The `variables` block may contain many `variable` blocks which support the following arguments:
 
-* `name` — (Required) The name of the variable.
-* `value` — (Required) The default value to assign to the variable
-* `description` — (Optional) A human-readable description
-* `hidden` — (Required) Whether to hide the variable when debugging requests
-* `sensitive` — (Required) Whether to obscure the value when debugging requests
+* `name` — (Required) The name of the variable.
+* `value` — (Required) The default value to assign to the variable
+* `description` — (Optional) A human-readable description
+* `hidden` — (Required) Whether to hide the variable when debugging requests
+* `sensitive` — (Required) Whether to obscure the value when debugging requests

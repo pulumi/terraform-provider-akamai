@@ -13,10 +13,9 @@ The `akamai_dns_record` provides the resource for configuring a dns record to in
 
 ## Example Usage
 
-Basic usage:
+### Basic usage:
 
 ```hcl
-### A Record Example
 resource "akamai_dns_record" "origin" {
     zone = "origin.org"
     name = "origin.example.org"
@@ -26,7 +25,6 @@ resource "akamai_dns_record" "origin" {
     target = ["192.0.2.42"]
 }
 
-### CNAME Record Example
 resource "akamai_dns_record" "www" {
     zone = "example.com"
     name = "www.example.com"
