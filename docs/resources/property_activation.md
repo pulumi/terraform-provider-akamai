@@ -8,8 +8,6 @@ description: |-
 
 # akamai_property_activation
 
-~> **Note** Version 1.0.0 of the Akamai Terraform Provider is now available for the Provisioning module. To upgrade to the new version, you have to update this resource. See the [migration guide](../guides/1.0_migration.md) for details. 
-
 The `akamai_property_activation` resource lets you activate a property version. An activation deploys the version to either the Akamai staging or production network. You can activate a specific version multiple times if you need to.  
 
 Before activating on production, activate on staging first. This way you can detect any problems in staging before your changes progress to production.
@@ -26,7 +24,7 @@ locals {
 }
 
 resource "akamai_property" "example" {
-    name    = "terraform-demo"
+    name    = "provider-demo"
     contact = ["user@example.org"]
     product_id  = "prd_SPM"
     contract_id = var.contractid

@@ -8,8 +8,6 @@ description: |-
 
 # akamai_edge_hostname
 
-~> **Note** Version 1.0.0 of the Akamai Terraform Provider is now available for the Provisioning module. To upgrade to the new version, you have to update this resource. See the [migration guide](../guides/1.0_migration.md) for details. 
-
 The `akamai_edge_hostname` resource lets you configure a secure edge hostname. Your 
 edge hostname determines how requests for your site, app, or content are mapped to 
 Akamai edge servers. 
@@ -35,7 +33,7 @@ For example, if you use Standard TLS and have `www.example.com` as a hostname, y
 Basic usage:
 
 ```hcl
-resource "akamai_edge_hostname" "terraform-demo" {
+resource "akamai_edge_hostname" "provider-demo" {
     product_id  = "prd_Object_Delivery"
     contract_id = "ctr_1-AB123"
     group_id    = "grp_123"

@@ -18,7 +18,7 @@ The template format used in this data source matches those used in the [Property
 You can pass user-defined variables by supplying either: 
 
 * paths to `variableDefinitions.json` and `variables.json` with syntax used in Property Manager CLI, or 
-* a set of Terraform variables.
+* a set of provider variables.
 
 ## Referencing sub-files from a template
 You can split each template out into a series of smaller template files. To add 
@@ -30,7 +30,7 @@ relation to the directory that contains the starting template file.
 
 ## Inserting variables in a template
 You can also add variables to a template by using a string like `“${env.<variableName>}"`. You'll need the quotes here too.  
-These variables follow the format used in the [Property Manager CLI](https://github.com/akamai/cli-property-manager#update-the-variabledefinitions-file).  They differ from Terraform variables which should resolve normally.
+These variables follow the format used in the [Property Manager CLI](https://github.com/akamai/cli-property-manager#update-the-variabledefinitions-file).  They differ from the provider variables which should resolve normally.
 
 ## Example usage: variables
 
@@ -90,7 +90,7 @@ templates/main.json:
 }
 ```
 
-You can then define a Terraform configuration file like this, which pulls in the `main.json` file above and uses it with a property:
+You can then define a provider configuration file like this, which pulls in the `main.json` file above and uses it with a property:
 
 ```hcl
 data "akamai_property_rules_template" "example" {

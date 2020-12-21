@@ -51,7 +51,7 @@ Optional
 
 Computed
 
-The following arguments will be found in terraform.tfstate and can be referenced throughout the configuration. The values can NOT be changed.
+The following arguments will be found in the outputs and can be referenced throughout the configuration. The values can NOT be changed.
 
 * `default_unreachable_threshold` 
 * `min_pingable_region_fraction`

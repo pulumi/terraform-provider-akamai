@@ -106,7 +106,7 @@ Optional
 
 Computed
 
-The following arguments will be found in terraform.tfstate and can be referenced throughout the configuration. The values can NOT be changed.
+The following arguments will be found in the outputs and can be referenced throughout the configuration. The values can NOT be changed.
 
 * `weighted_hash_bits_for_ipv4`
 * `weighted_hash_bits_for_ipv6`
