@@ -53,9 +53,7 @@ This data source supports these arguments:
 
 * `name` - (Required) The name of the CP code.
 * `group_id` - (Required) The group's unique ID, including the `grp_` prefix.
-* `contract_id` - (Required) A contract's unique ID, including the `ctr_` prefix. 
-
-### Deprecated arguments
+* `contract_id` - (Required) A contract's unique ID, including the `ctr_` prefix. 
 * `contract` - (Deprecated) Replaced by `contract_id`. Maintained for legacy purposes.
 * `group` - (Deprecated) Replaced by `group_id`. Maintained for legacy purposes.
 

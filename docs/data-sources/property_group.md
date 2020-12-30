@@ -42,9 +42,7 @@ resource "akamai_property" "example" {
 This data source supports these arguments:
 
 * `name` - (Required) The group name.
-* `contract_id` - (Required) A contract's unique ID, including the `ctr_` prefix. 
-
-### Deprecated arguments 
+* `contract_id` - (Required) A contract's unique ID, including the `ctr_` prefix. 
 * `contract` - (Deprecated) Replaced by `contract_id`. Maintained for legacy purposes.
 
 ## Attributes reference

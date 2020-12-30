@@ -35,8 +35,7 @@ var (
 	// Terraform now supports section aliases
 	// TODO: Add alias example to the examples directory
 	NoticeDeprecatedUseAlias = func(n string) string {
-		return fmt.Sprintf(`The setting %q has been deprecated. See:
-	https://www.terraform.io/docs/configuration/providers.html#alias-multiple-provider-configurations`, n)
+		return fmt.Sprintf(`The setting %q has been deprecated.`, n)
 	}
 )
 
