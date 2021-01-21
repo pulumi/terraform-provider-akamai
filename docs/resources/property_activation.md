@@ -24,14 +24,13 @@ locals {
 }
 
 resource "akamai_property" "example" {
-    name    = "provider-demo"
-    contact = ["user@example.org"]
+    name    = "demo"
     product_id  = "prd_SPM"
     contract_id = var.contractid
     group_id    = var.groupid
     hostnames = {
        "example.org" = "example.org.edgesuite.net"
-       "www.example.org" = "example.org.edgesuite.net" 
+       "www.example.org" = "example.org.edgesuite.net"
        "sub.example.org" = "sub.example.org.edgesuite.net"
     }
     rule_format = local.rule_format
@@ -41,7 +40,7 @@ resource "akamai_property" "example" {
 
 resource "akamai_property_activation" "example_staging" {
      property_id = akamai_property.example.id
-     contact  = [local.email] 
+     contact  = [local.email]
      # NOTE: Specifying a version as shown here will target the latest version created. This latest version will always be activated in staging.
      version  = akamai_property.example.latest_version
      # not specifying network will target STAGING
@@ -51,14 +50,14 @@ resource "akamai_property_activation" "example_prod" {
      property_id = akamai_property.example.id
      network  = "PRODUCTION"
      # manually specifying version allows production to lag behind staging until qualified by testing on staging URLs.
-     version = 3 
+     version = 3
      # manually declaring a dependency on staging means production activation will not update if staging update fails -  
-     # useful when both target same version.  The example does not depict this approach. However, this practice is 
+     # useful when both target same version.  The example does not depict this approach. However, this practice is
      # recommended even when you edit production version by hand as shown in this example.
      depends_on = [
         akamai_property_activation.example_staging
      ]
-     contact  = [local.email] 
+     contact  = [local.email]
 }
 ```
 
@@ -66,7 +65,7 @@ resource "akamai_property_activation" "example_prod" {
 
 The following arguments are supported:
 
-* `property_id` - (Required) The property’s unique identifier, including the `prp_` prefix. 
+* `property_id` - (Required) The property’s unique identifier, including the `prp_` prefix.
 * `contact` - (Required) One or more email addresses to send activation status changes to.
 * `version` - (Required) The property version to activate. Previously this field was optional. It now depends on the `akamai_property` resource to identify latest instead of calculating it locally.  This association helps keep the dependency tree properly aligned. To always use the latest version, enter this value `{resource}.{resource identifier}.{field name}`. Using the example code above, the entry would be `akamai_property.example.latest_version` since we want the value of the `latest_version` attribute in the `akamai_property` resource labeled `example`.
 * `network` - (Optional) Akamai network to activate on, either `STAGING` or `PRODUCTION`. `STAGING` is the default.
