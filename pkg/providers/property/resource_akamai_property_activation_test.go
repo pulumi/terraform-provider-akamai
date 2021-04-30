@@ -2,10 +2,11 @@ package property
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/mock"
 	"log"
 	"regexp"
 	"testing"
+
+	"github.com/stretchr/testify/mock"
 
 	"github.com/akamai/AkamaiOPEN-edgegrid-golang/v2/pkg/papi"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
@@ -181,7 +182,10 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 			{
 				methodName: "GetRuleTree",
 				papiResponse: &papi.GetRuleTreeResponse{
-					Response: papi.Response{Errors: make([]*papi.Error, 0)},
+					Response: papi.Response{
+						Errors:   make([]*papi.Error, 0),
+						Warnings: []*papi.Error{{Title: "some warning"}},
+					},
 				},
 				error:    nil,
 				stubOnce: false,
@@ -253,12 +257,13 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "property_id", "prp_test"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "network", "STAGING"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "version", "1"),
+							resource.TestCheckResourceAttr("akamai_property_activation.test", "auto_acknowledge_rule_warnings", "true"),
 							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "warnings"),
+							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "rule_warnings"),
 							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "errors"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "activation_id", "atv_activation1"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "status", "ACTIVE"),
 						),
-						ExpectNonEmptyPlan: true,
 					},
 				},
 			})
@@ -415,7 +420,6 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "activation_id", "atv_activation1"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "status", "ACTIVE"),
 						),
-						ExpectNonEmptyPlan: true,
 					},
 				},
 			})
@@ -430,7 +434,10 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 			{
 				methodName: "GetRuleTree",
 				papiResponse: &papi.GetRuleTreeResponse{
-					Response: papi.Response{Errors: make([]*papi.Error, 0)},
+					Response: papi.Response{
+						Errors:   make([]*papi.Error, 0),
+						Warnings: []*papi.Error{{Title: "some warning"}},
+					},
 				},
 				error:    nil,
 				stubOnce: false,
@@ -541,6 +548,9 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "version", "1"),
 							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "warnings"),
 							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "errors"),
+							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "rule_errors"),
+							resource.TestCheckResourceAttr("akamai_property_activation.test", "auto_acknowledge_rule_warnings", "true"),
+							resource.TestCheckNoResourceAttr("akamai_property_activation.test", "rule_warnings"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "activation_id", "atv_activation1"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "status", "ACTIVE"),
 						),
@@ -555,6 +565,40 @@ func TestResourcePropertyActivationCreate(t *testing.T) {
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "activation_id", "atv_update"),
 							resource.TestCheckResourceAttr("akamai_property_activation.test", "status", "ACTIVE"),
 						),
+					},
+				},
+			})
+		})
+
+		client.AssertExpectations(t)
+	})
+
+	t.Run("check schema property activation with rule errors", func(t *testing.T) {
+
+		client := mockPAPIClient([]papiCall{
+			{
+				methodName: "GetRuleTree",
+				papiResponse: &papi.GetRuleTreeResponse{
+					Response: papi.Response{
+						Errors: []*papi.Error{
+							{
+								Title: "some error",
+							},
+						},
+					},
+				},
+				error:    nil,
+				stubOnce: false,
+			},
+		})
+		useClient(client, func() {
+			resource.UnitTest(t, resource.TestCase{
+				IsUnitTest: true,
+				Providers:  testAccProviders,
+				Steps: []resource.TestStep{
+					{
+						Config:      loadFixtureString("testdata/TestPropertyActivation/ok/resource_property_activation.tf"),
+						ExpectError: regexp.MustCompile("activation cannot continue due to rule errors"),
 					},
 				},
 			})
